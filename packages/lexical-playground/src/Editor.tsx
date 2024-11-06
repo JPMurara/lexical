@@ -42,6 +42,7 @@ import ComponentPickerPlugin from './plugins/ComponentPickerPlugin';
 import ContextMenuPlugin from './plugins/ContextMenuPlugin';
 import DragDropPaste from './plugins/DragDropPastePlugin';
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin';
+import DXPImagePlugin from './plugins/DXPImagePlugin';
 import EmojiPickerPlugin from './plugins/EmojiPickerPlugin';
 import EmojisPlugin from './plugins/EmojisPlugin';
 import EquationsPlugin from './plugins/EquationsPlugin';
@@ -203,6 +204,7 @@ export default function Editor(): JSX.Element {
             <TableCellResizer />
             <ImagesPlugin />
             <InlineImagePlugin />
+            <DXPImagePlugin />
             <LinkPlugin hasLinkAttributes={hasLinkAttributes} />
             <PollPlugin />
             <TwitterPlugin />

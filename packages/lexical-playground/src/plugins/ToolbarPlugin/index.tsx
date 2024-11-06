@@ -67,6 +67,7 @@ import {getSelectedNode} from '../../utils/getSelectedNode';
 import {sanitizeUrl} from '../../utils/url';
 import {EmbedConfigs} from '../AutoEmbedPlugin';
 import {INSERT_COLLAPSIBLE_COMMAND} from '../CollapsiblePlugin';
+import {InsertDXPImageDialog} from '../DXPImagePlugin';
 import {InsertEquationDialog} from '../EquationsPlugin';
 import {INSERT_EXCALIDRAW_COMMAND} from '../ExcalidrawPlugin';
 import {
@@ -1004,6 +1005,20 @@ export default function ToolbarPlugin({
                   className="item">
                   <i className="icon image" />
                   <span className="text">Inline Image</span>
+                </DropDownItem>
+                {/* DXP image test */}
+                <DropDownItem
+                  onClick={() => {
+                    showModal('DXP Image', (onClose) => (
+                      <InsertDXPImageDialog
+                        activeEditor={activeEditor}
+                        onClose={onClose}
+                      />
+                    ));
+                  }}
+                  className="item">
+                  <i className="icon image" />
+                  <span className="text">DXP Image</span>
                 </DropDownItem>
                 <DropDownItem
                   onClick={() =>
