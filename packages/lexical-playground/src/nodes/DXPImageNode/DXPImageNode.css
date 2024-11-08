@@ -172,3 +172,8 @@
   display: inline-block;
   position: absolute;
 }
+
+/* Adjust resize handles for inline positioning */
+.inline-editor-image .image-resizer {
+  position: absolute;
+}

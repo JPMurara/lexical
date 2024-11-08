@@ -986,8 +986,16 @@ i.page-break,
   max-width: 100%;
   cursor: default;
 }
+.editor-shell .dxp-editor-image img {
+  max-width: 100%;
+  cursor: default;
+}
 
 .editor-shell .editor-image img.focused {
+  outline: 2px solid rgb(60, 132, 244);
+  user-select: none;
+}
+.editor-shell .dxp-editor-image img.focused {
   outline: 2px solid rgb(60, 132, 244);
   user-select: none;
 }
@@ -995,12 +1003,22 @@ i.page-break,
 .editor-shell .editor-image img.focused.draggable {
   cursor: grab;
 }
+.editor-shell .dxp-editor-image img.focused.draggable {
+  cursor: grab;
+}
 
 .editor-shell .editor-image img.focused.draggable:active {
   cursor: grabbing;
 }
+.editor-shell .dxp-editor-image img.focused.draggable:active {
+  cursor: grabbing;
+}
 
 .editor-shell .editor-image .image-caption-container .tree-view-output {
+  margin: 0;
+  border-radius: 0;
+}
+.editor-shell .dxp-editor-image .image-caption-container .tree-view-output {
   margin: 0;
   border-radius: 0;
 }
@@ -1126,8 +1144,18 @@ i.page-break,
   position: relative;
   z-index: 1;
 }
+.editor-shell span.dxp-editor-image {
+  cursor: default;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
 
 .editor-shell .inline-editor-image img {
+  max-width: 100%;
+  cursor: default;
+}
+.editor-shell .dxp-editor-image img {
   max-width: 100%;
   cursor: default;
 }
@@ -1135,12 +1163,21 @@ i.page-break,
 .editor-shell .inline-editor-image img.focused {
   outline: 2px solid rgb(60, 132, 244);
 }
+.editor-shell .dxp-editor-image img.focused {
+  outline: 2px solid rgb(60, 132, 244);
+}
 
 .editor-shell .inline-editor-image img.focused.draggable {
   cursor: grab;
 }
+.editor-shell .dxp-editor-image img.focused.draggable {
+  cursor: grab;
+}
 
 .editor-shell .inline-editor-image img.focused.draggable:active {
+  cursor: grabbing;
+}
+.editor-shell .dxp-editor-image img.focused.draggable:active {
   cursor: grabbing;
 }
 
@@ -1148,12 +1185,24 @@ i.page-break,
   margin: 0;
   border-radius: 0;
 }
+.editor-shell .dxp-editor-image .image-caption-container .tree-view-output {
+  margin: 0;
+  border-radius: 0;
+}
 
 .editor-shell .inline-editor-image.position-full {
   margin: 1em 0 1em 0;
 }
+.editor-shell .dxp-editor-image.position-full {
+  margin: 1em 0 1em 0;
+}
 
 .editor-shell .inline-editor-image.position-left {
+  float: left;
+  width: 50%;
+  margin: 1em 1em 0 0;
+}
+.editor-shell .dxp-editor-image.position-left {
   float: left;
   width: 50%;
   margin: 1em 1em 0 0;
@@ -1164,17 +1213,6 @@ i.page-break,
   width: 50%;
   margin: 1em 0 0 1em;
 }
-
-.editor-shell .dxp-editor-image.position-full {
-  margin: 1em 0 1em 0;
-}
-
-.editor-shell .dxp-editor-image.position-left {
-  float: left;
-  width: 50%;
-  margin: 1em 1em 0 0;
-}
-
 .editor-shell .dxp-editor-image.position-right {
   float: right;
   width: 50%;
@@ -1229,6 +1267,14 @@ i.page-break,
 }
 
 .editor-shell .inline-editor-image .image-caption-container {
+  display: block;
+  background-color: #f4f4f4;
+  min-width: 100%;
+  color: #000;
+  overflow: hidden;
+}
+
+.editor-shell .dxp-editor-image .image-caption-container {
   display: block;
   background-color: #f4f4f4;
   min-width: 100%;
