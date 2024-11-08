@@ -426,7 +426,7 @@ export default function DXPImageComponent({
           />
         </span>
         {showCaption && (
-          <span className="image-caption-container">
+          <span className="dxp-image-caption-container">
             <LexicalNestedComposer initialEditor={caption}>
               <AutoFocusPlugin />
               <LinkPlugin />
