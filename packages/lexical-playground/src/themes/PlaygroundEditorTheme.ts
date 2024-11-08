@@ -11,7 +11,7 @@ import type {EditorThemeClasses} from 'lexical';
 import './PlaygroundEditorTheme.css';
 
 const theme: EditorThemeClasses = {
-  DXPImage: 'dxp-editor-image',
+  DXPImage: 'editor-image',
   autocomplete: 'PlaygroundEditorTheme__autocomplete',
   blockCursor: 'PlaygroundEditorTheme__blockCursor',
   characterLimit: 'PlaygroundEditorTheme__characterLimit',

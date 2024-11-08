@@ -1229,7 +1229,8 @@ i.page-break,
   width: 50%;
 }
 
-.editor-shell .inline-editor-image .image-edit-button {
+.editor-shell .inline-editor-image .image-edit-button,
+.editor-shell .editor-image .dxp-image-edit-button {
   display: block;
   position: absolute;
   top: 12px;
@@ -1245,7 +1246,8 @@ i.page-break,
   user-select: none;
 }
 
-.editor-shell .inline-editor-image .image-edit-button:hover {
+.editor-shell .inline-editor-image .image-edit-button:hover,
+.editor-shell .editor-image .dxp-image-edit-button:hover {
   background-color: rgba(60, 132, 244, 0.5);
 }
 
