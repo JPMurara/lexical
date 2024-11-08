@@ -40,6 +40,7 @@ import LinkPlugin from '../../plugins/LinkPlugin';
 import Button from '../../ui/Button';
 import ContentEditable from '../../ui/ContentEditable';
 import {DialogActions} from '../../ui/Dialog';
+import ImageResizer from '../../ui/ImageResizer';
 import Select from '../../ui/Select';
 import TextInput from '../../ui/TextInput';
 import {$isDXPImageNode, DXPImageNode} from './DXPImageNode';
@@ -67,6 +68,7 @@ function LazyImage({
   width,
   height,
   position,
+  maxWidth,
 }: {
   altText: string;
   className: string | null;
@@ -75,6 +77,7 @@ function LazyImage({
   src: string;
   width: 'inherit' | number;
   position: Position;
+  maxWidth: number;
 }): JSX.Element {
   useSuspenseImage(src);
   return (
@@ -181,6 +184,8 @@ export default function DXPImageComponent({
   showCaption,
   caption,
   position,
+  resizable,
+  maxWidth,
 }: {
   altText: string;
   caption: LexicalEditor;
@@ -190,6 +195,8 @@ export default function DXPImageComponent({
   src: string;
   width: 'inherit' | number;
   position: Position;
+  resizable: boolean;
+  maxWidth: number;
 }): JSX.Element {
   const [modal, showModal] = useModal();
   const imageRef = useRef<null | HTMLImageElement>(null);
@@ -200,6 +207,7 @@ export default function DXPImageComponent({
   const [selection, setSelection] = useState<BaseSelection | null>(null);
   const activeEditorRef = useRef<LexicalEditor | null>(null);
   const isEditable = useLexicalEditable();
+  const [isResizing, setIsResizing] = useState<boolean>(false);
 
   const $onDelete = useCallback(
     (payload: KeyboardEvent) => {
@@ -292,6 +300,11 @@ export default function DXPImageComponent({
         CLICK_COMMAND,
         (payload) => {
           const event = payload;
+
+          if (isResizing) {
+            return true;
+          }
+
           if (event.target === imageRef.current) {
             if (event.shiftKey) {
               setSelected(!isSelected);
@@ -349,10 +362,32 @@ export default function DXPImageComponent({
     $onEnter,
     $onEscape,
     setSelected,
+    isResizing,
   ]);
 
   const draggable = isSelected && $isNodeSelection(selection);
   const isFocused = isSelected && isEditable;
+
+  const onResizeEnd = (
+    nextWidth: 'inherit' | number,
+    nextHeight: 'inherit' | number,
+  ) => {
+    setTimeout(() => {
+      setIsResizing(false);
+    }, 200);
+
+    editor.update(() => {
+      const node = $getNodeByKey(nodeKey);
+      if ($isDXPImageNode(node)) {
+        node.setWidthAndHeight(nextWidth, nextHeight);
+      }
+    });
+  };
+
+  const onResizeStart = () => {
+    setIsResizing(true);
+  };
+
   return (
     <Suspense fallback={null}>
       <>
@@ -385,6 +420,7 @@ export default function DXPImageComponent({
             width={width}
             height={height}
             position={position}
+            maxWidth={maxWidth}
           />
         </span>
         {showCaption && (
@@ -404,6 +440,26 @@ export default function DXPImageComponent({
               />
             </LexicalNestedComposer>
           </span>
+        )}
+        {resizable && $isNodeSelection(selection) && isFocused && (
+          <ImageResizer
+            showCaption={showCaption}
+            setShowCaption={(show) => {
+              editor.update(() => {
+                const node = $getNodeByKey(nodeKey);
+                if ($isDXPImageNode(node)) {
+                  node.setShowCaption(show);
+                }
+              });
+            }}
+            editor={editor}
+            buttonRef={buttonRef}
+            imageRef={imageRef}
+            maxWidth={maxWidth}
+            onResizeStart={onResizeStart}
+            onResizeEnd={onResizeEnd}
+            captionsEnabled={true}
+          />
         )}
       </>
       {modal}

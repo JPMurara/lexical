@@ -92,3 +92,30 @@
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
+.image-resizer {
+  display: block;
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  background-color: rgb(60, 132, 244);
+  border: 1px solid #fff;
+}
+
+.image-resizer.image-resizer-n {
+  top: -6px;
+  left: 48%;
+  cursor: n-resize;
+}
+
+.image-resizer.image-resizer-ne {
+  top: -6px;
+  right: -6px;
+  cursor: ne-resize;
+}
+
+/* Add similar styles for other resize handles (e, se, s, sw, w, nw) */
+
+.image-control-wrapper--resizing {
+  user-select: none;
+}

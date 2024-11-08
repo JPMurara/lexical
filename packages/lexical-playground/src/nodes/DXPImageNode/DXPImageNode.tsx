@@ -36,12 +36,16 @@ export interface DXPImagePayload {
   src: string;
   width?: number;
   position?: Position;
+  maxWidth?: number;
+  captionsEnabled?: boolean;
 }
 
 export interface UpdateDXPImagePayload {
   altText?: string;
   showCaption?: boolean;
   position?: Position;
+  width?: 'inherit' | number;
+  height?: 'inherit' | number;
 }
 
 function $convertDXPImageElement(domNode: Node): null | DOMConversionOutput {
@@ -58,6 +62,7 @@ export type SerializedDXPImageNode = Spread<
     altText: string;
     caption: SerializedEditor;
     height?: number;
+    maxWidth: number;
     showCaption: boolean;
     src: string;
     width?: number;
@@ -74,6 +79,8 @@ export class DXPImageNode extends DecoratorNode<JSX.Element> {
   __showCaption: boolean;
   __caption: LexicalEditor;
   __position: Position;
+  __maxWidth: number;
+  __captionsEnabled: boolean;
 
   static getType(): string {
     return 'DXP-image';
@@ -84,20 +91,31 @@ export class DXPImageNode extends DecoratorNode<JSX.Element> {
       node.__src,
       node.__altText,
       node.__position,
+      node.__maxWidth,
       node.__width,
       node.__height,
       node.__showCaption,
       node.__caption,
+      node.__captionsEnabled,
       node.__key,
     );
   }
 
   static importJSON(serializedNode: SerializedDXPImageNode): DXPImageNode {
-    const {altText, height, width, caption, src, showCaption, position} =
-      serializedNode;
+    const {
+      altText,
+      height,
+      width,
+      maxWidth,
+      caption,
+      src,
+      showCaption,
+      position,
+    } = serializedNode;
     const node = $createDXPImageNode({
       altText,
       height,
+      maxWidth,
       position,
       showCaption,
       src,
@@ -124,20 +142,28 @@ export class DXPImageNode extends DecoratorNode<JSX.Element> {
     src: string,
     altText: string,
     position: Position,
+    maxWidth: number,
     width?: 'inherit' | number,
     height?: 'inherit' | number,
     showCaption?: boolean,
     caption?: LexicalEditor,
+    captionsEnabled?: boolean,
     key?: NodeKey,
   ) {
     super(key);
     this.__src = src;
     this.__altText = altText;
+    this.__maxWidth = maxWidth;
     this.__width = width || 'inherit';
     this.__height = height || 'inherit';
     this.__showCaption = showCaption || false;
-    this.__caption = caption || createEditor();
+    this.__caption =
+      caption ||
+      createEditor({
+        nodes: [],
+      });
     this.__position = position;
+    this.__captionsEnabled = captionsEnabled || captionsEnabled === undefined;
   }
 
   exportDOM(): DOMExportOutput {
@@ -154,6 +180,7 @@ export class DXPImageNode extends DecoratorNode<JSX.Element> {
       altText: this.getAltText(),
       caption: this.__caption.toJSON(),
       height: this.__height === 'inherit' ? 0 : this.__height,
+      maxWidth: this.__maxWidth,
       position: this.__position,
       showCaption: this.__showCaption,
       src: this.getSrc(),
@@ -205,7 +232,7 @@ export class DXPImageNode extends DecoratorNode<JSX.Element> {
 
   update(payload: UpdateDXPImagePayload): void {
     const writable = this.getWritable();
-    const {altText, showCaption, position} = payload;
+    const {altText, showCaption, position, width, height} = payload;
     if (altText !== undefined) {
       writable.__altText = altText;
     }
@@ -214,6 +241,12 @@ export class DXPImageNode extends DecoratorNode<JSX.Element> {
     }
     if (position !== undefined) {
       writable.__position = position;
+    }
+    if (width !== undefined) {
+      writable.__width = width;
+    }
+    if (height !== undefined) {
+      writable.__height = height;
     }
   }
 
@@ -251,10 +284,13 @@ export class DXPImageNode extends DecoratorNode<JSX.Element> {
           altText={this.__altText}
           width={this.__width}
           height={this.__height}
+          maxWidth={this.__maxWidth}
           nodeKey={this.getKey()}
           showCaption={this.__showCaption}
           caption={this.__caption}
           position={this.__position}
+          captionsEnabled={this.__captionsEnabled}
+          resizable={true}
         />
       </Suspense>
     );
@@ -267,8 +303,10 @@ export function $createDXPImageNode({
   height,
   src,
   width,
+  maxWidth = 500,
   showCaption,
   caption,
+  captionsEnabled,
   key,
 }: DXPImagePayload): DXPImageNode {
   return $applyNodeReplacement(
@@ -276,10 +314,12 @@ export function $createDXPImageNode({
       src,
       altText,
       position,
+      maxWidth,
       width,
       height,
       showCaption,
       caption,
+      captionsEnabled,
       key,
     ),
   );
