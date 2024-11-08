@@ -40,7 +40,7 @@ import LinkPlugin from '../../plugins/LinkPlugin';
 import Button from '../../ui/Button';
 import ContentEditable from '../../ui/ContentEditable';
 import {DialogActions} from '../../ui/Dialog';
-import ImageResizer from '../../ui/ImageResizer';
+import DXPImageResizer from '../../ui/DXPImageResizer';
 import Select from '../../ui/Select';
 import TextInput from '../../ui/TextInput';
 import {$isDXPImageNode, DXPImageNode} from './DXPImageNode';
@@ -442,7 +442,7 @@ export default function DXPImageComponent({
           </span>
         )}
         {resizable && $isNodeSelection(selection) && isFocused && (
-          <ImageResizer
+          <DXPImageResizer
             showCaption={showCaption}
             setShowCaption={(show) => {
               editor.update(() => {

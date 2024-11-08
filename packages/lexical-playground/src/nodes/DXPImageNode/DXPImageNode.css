@@ -114,8 +114,61 @@
   cursor: ne-resize;
 }
 
-/* Add similar styles for other resize handles (e, se, s, sw, w, nw) */
+.image-resizer.image-resizer-e {
+  bottom: 48%;
+  right: -6px;
+  cursor: e-resize;
+}
+
+.image-resizer.image-resizer-se {
+  bottom: -6px;
+  right: -6px;
+  cursor: se-resize;
+}
+
+.image-resizer.image-resizer-s {
+  bottom: -6px;
+  left: 48%;
+  cursor: s-resize;
+}
+
+.image-resizer.image-resizer-sw {
+  bottom: -6px;
+  left: -6px;
+  cursor: sw-resize;
+}
+
+.image-resizer.image-resizer-w {
+  bottom: 48%;
+  left: -6px;
+  cursor: w-resize;
+}
+
+.image-resizer.image-resizer-nw {
+  top: -6px;
+  left: -6px;
+  cursor: nw-resize;
+}
 
 .image-control-wrapper--resizing {
   user-select: none;
+}
+
+.image-resizer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none; /* Allow clicking through to image */
+}
+
+.image-resizer-container .image-resizer {
+  pointer-events: all; /* Re-enable pointer events for resize handles */
+}
+
+/* Ensure resize handles are properly positioned relative to inline image */
+.inline-editor-image .image-resizer-container {
+  display: inline-block;
+  position: absolute;
 }
