@@ -1165,6 +1165,32 @@ i.page-break,
   margin: 1em 0 0 1em;
 }
 
+.editor-shell .dxp-editor-image.position-full {
+  margin: 1em 0 1em 0;
+}
+
+.editor-shell .dxp-editor-image.position-left {
+  float: left;
+  width: 50%;
+  margin: 1em 1em 0 0;
+}
+
+.editor-shell .dxp-editor-image.position-right {
+  float: right;
+  width: 50%;
+  margin: 1em 0 0 1em;
+}
+
+.editor-shell .dxp-editor-image.position-center {
+  display: block;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 50%;
+}
+
 .editor-shell .inline-editor-image .image-edit-button {
   display: block;
   position: absolute;

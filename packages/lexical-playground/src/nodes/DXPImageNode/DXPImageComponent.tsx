@@ -151,6 +151,7 @@ export function UpdateDXPImageDialog({
         onChange={handlePositionChange}>
         <option value="left">Left</option>
         <option value="right">Right</option>
+        <option value="center">Center</option>
         <option value="full">Full Width</option>
       </Select>
 

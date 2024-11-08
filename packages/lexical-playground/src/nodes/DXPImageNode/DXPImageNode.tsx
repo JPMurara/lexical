@@ -25,7 +25,7 @@ import {Suspense} from 'react';
 
 const DXPImageComponent = React.lazy(() => import('./DXPImageComponent'));
 
-export type Position = 'left' | 'right' | 'full' | undefined;
+export type Position = 'left' | 'right' | 'full' | 'center' | undefined;
 
 export interface DXPImagePayload {
   altText: string;
