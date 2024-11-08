@@ -1193,7 +1193,7 @@ i.page-break,
 .editor-shell .inline-editor-image.position-full {
   margin: 1em 0 1em 0;
 }
-.editor-shell .dxp-editor-image.position-full {
+.editor-shell .editor-image.position-full {
   margin: 1em 0 1em 0;
 }
 
@@ -1202,7 +1202,7 @@ i.page-break,
   width: 50%;
   margin: 1em 1em 0 0;
 }
-.editor-shell .dxp-editor-image.position-left {
+.editor-shell .editor-image.position-left {
   float: left;
   width: 50%;
   margin: 1em 1em 0 0;
@@ -1213,13 +1213,13 @@ i.page-break,
   width: 50%;
   margin: 1em 0 0 1em;
 }
-.editor-shell .dxp-editor-image.position-right {
+.editor-shell .editor-image.position-right {
   float: right;
   width: 50%;
   margin: 1em 0 0 1em;
 }
 
-.editor-shell .dxp-editor-image.position-center {
+.editor-shell .editor-image.position-center {
   display: block;
   float: none;
   margin-left: auto;
