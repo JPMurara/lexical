@@ -391,10 +391,11 @@ export default function DXPImageComponent({
   return (
     <Suspense fallback={null}>
       <>
+        {/* edit button */}
         <span draggable={draggable}>
           {isEditable && (
             <button
-              className="image-edit-button"
+              className="dxp-image-edit-button"
               ref={buttonRef}
               onClick={() => {
                 showModal('Update DXP Image', (onClose) => (

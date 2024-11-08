@@ -975,6 +975,13 @@ i.page-break,
   user-select: none;
 }
 
+.editor-shell span.dxp-editor-image {
+  cursor: default;
+  display: inline-block;
+  position: relative;
+  user-select: none;
+}
+
 .editor-shell .editor-image img {
   max-width: 100%;
   cursor: default;
@@ -1053,6 +1060,24 @@ i.page-break,
 }
 
 .editor-shell .editor-image .image-edit-button:hover {
+  background-color: rgba(60, 132, 244, 0.1);
+}
+
+editor-shell .dxp-editor-image .dxp-image-edit-button {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-image: url(/src/images/icons/pencil-fill.svg);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  vertical-align: -0.25em;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  cursor: pointer;
+  user-select: none;
   background-color: rgba(60, 132, 244, 0.1);
 }
 
